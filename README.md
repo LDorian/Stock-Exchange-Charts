@@ -1,4 +1,4 @@
-# Stock Exchange Analysis Tool
+# Stock Exchange Analysis
 
 Based on data fetched from Yahoo Finance.
 
