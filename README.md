@@ -14,7 +14,4 @@ Will be based on Yahoo Finance.
 * Requirements :
     * yfinance (Yahoo Finance)
     * pandas (Multidimensional data structures)
-    * numpy (Fourier transform - linear algebra)
     * matplotlib
-    * statsmodels (Statistics)
-    * sklearn (Machine Learning)
