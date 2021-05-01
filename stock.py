@@ -4,8 +4,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import copy
 
+# Moving Avg
+def getMovingAvg(values, gap):
+	avg = values.rolling(gap).mean()
+	return avg
+
+def rsi(i):
+    up = i[i>0].mean()
+    down = -1*i[i<0].mean()
+    return 100*up / (up + down)
+
 # Define stock & date
-stock = ['TSLA']
+stock = ['TSLA','MSFT']
 start_date = '2020-01-01'
 end_date = '2021-01-01'
 
@@ -38,11 +48,6 @@ mergedPlot = normalized.plot(title='Normalized')
 mergedPlot.set_xlabel("Date")
 mergedPlot.set_ylabel("Price")
 plt.show()
-
-# Moving Avg
-def getMovingAvg(values, gap):
-	avg = values.rolling(gap).mean()
-	return avg
 
 # Moving Avg Graph
 for v in stock:
@@ -81,4 +86,22 @@ for v in stock:
     ax.set_xlabel("Date")
     ax.set_ylabel("Price")
     plt.show()
+
+for v in stock:
+    daily = (dataFrame[v]/dataFrame[v].shift(1))-1
+    dataFrame['Daily_'+v] = daily
+    ax = daily.plot(title = "Daily "+v, label = v)
+    plt.show()
+
+for v in stock:
+    dataFrame['Flux_'+v] = (dataFrame[v]-dataFrame[v].shift(1)).fillna(0)
+    dataFrame['RSI_'+v] = (dataFrame['Flux_'+v].rolling(center=False,window=15).apply(rsi).fillna(0))
+
+for v in stock:
+    ax = dataFrame['RSI_'+v].plot(title = "RSI "+v, label = v)
+    ax.set_xlabel("Date")
+    ax.set_ylabel("RSI value")
+    plt.show()
+
+
 
