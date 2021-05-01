@@ -8,7 +8,7 @@ Will be based on Yahoo Finance.
 * To-do's :
     * Daily Returns
     * RSI
-    * Bollinger Bands chart
+    * ~~Bollinger Bands chart~~ 
 
 
 * Requirements :
