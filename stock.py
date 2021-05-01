@@ -73,5 +73,12 @@ for v in stock:
     dataFrame['Up_'+v] = up
     dataFrame['Low_'+v] = low
 
-dataFrame = dataFrame.dropna()
-print(dataFrame)
+for v in stock:
+    ax = dataFrame.plot(title = "Bollinger Bands", label = v)
+    up.plot(label="up -", ax=ax)
+    low.plot(label="low -", ax=ax)
+    avg.plot(label="RollingMean", ax=ax)
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Price")
+    plt.show()
+
