@@ -26,10 +26,16 @@ for v in stock:
     dataFrame = dataFrame.join(data)
     dataFrame = dataFrame.dropna()
 
-dfMerged = copy.deepcopy(dataFrame)
-
 # Graph
+
 mergedPlot = dataFrame.plot(title='Stock Prices')
+mergedPlot.set_xlabel("Date")
+mergedPlot.set_ylabel("Price")
+plt.show()
+
+normalized = dataFrame/dataFrame.iloc[0,:]
+
+mergedPlot = normalized.plot(title='Normalized')
 mergedPlot.set_xlabel("Date")
 mergedPlot.set_ylabel("Price")
 plt.show()
