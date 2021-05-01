@@ -39,13 +39,39 @@ mergedPlot.set_xlabel("Date")
 mergedPlot.set_ylabel("Price")
 plt.show()
 
+# Moving Avg
+def getMovingAvg(values, gap):
+	avg = values.rolling(gap).mean()
+	return avg
+
 # Moving Avg Graph
 for v in stock:
     ax = dataFrame[v].plot(title=v+" moving average", label=v)
     ax.set_xlabel("Date")
     ax.set_ylabel("Price")
-    avg = dataFrame[v].rolling(20).mean()
+
+    avg = getMovingAvg(dataFrame[v], gap = 20)
     avg.plot(label = "Moving Avg",ax=ax)
     plt.show()
 
-    
+frame = copy.deepcopy(dataFrame)
+
+for v in stock:
+    # Avg
+    avg = getMovingAvg(dataFrame[v], gap = 20)
+
+    # Standard Deviation
+    std = dataFrame[v].rolling(20).std()
+    largeAvg = getMovingAvg(dataFrame[v], gap=50)
+    dataFrame['MovingAvg_'+v] = avg
+    dataFrame['Avg'+v] = largeAvg
+    dataFrame['RollStd_'+v] = std
+
+    # Bollinger Bands Limits (2*standard deviation, 20 as period)
+    up = avg + std*2
+    low = avg - std*2
+    dataFrame['Up_'+v] = up
+    dataFrame['Low_'+v] = low
+
+dataFrame = dataFrame.dropna()
+print(dataFrame)
