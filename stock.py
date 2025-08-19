@@ -1,4 +1,5 @@
 from datetime import date
+from pathlib import Path
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -22,6 +23,8 @@ start_date = "2020-01-01"
 end_date = "2021-01-01"
 
 # Download .csv
+Path("Stocks").mkdir(parents=True, exist_ok=True)
+
 for v in stock:
     data = yf.download(v, start_date, end_date)
     data.to_csv("./Stocks/" + v + ".csv")
@@ -86,10 +89,10 @@ for v in stock:
     dataFrame["Low_" + v] = low
 
 for v in stock:
-    ax = dataFrame.plot(title="Bollinger Bands", label=v)
-    up.plot(label="up -", ax=ax)
-    low.plot(label="low -", ax=ax)
-    avg.plot(label="RollingMean", ax=ax)
+    ax = dataFrame[v].plot(title=f"{v} Bollinger Bands", label=v)
+    dataFrame["Up_" + v].plot(label="Upper Band", ax=ax)
+    dataFrame["Low_" + v].plot(label="Lower Band", ax=ax)
+    dataFrame["MovingAvg_" + v].plot(label="RollingMean", ax=ax)
     ax.set_xlabel("Date")
     ax.set_ylabel("Price")
     plt.show()
