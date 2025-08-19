@@ -86,7 +86,13 @@ for v in stock:
     dataFrame["Low_" + v] = low
 
 for v in stock:
-    ax = dataFrame.plot(title="Bollinger Bands", label=v)
+    # Retrieve the Bollinger band data calculated earlier for this stock
+    up = dataFrame["Up_" + v]
+    low = dataFrame["Low_" + v]
+    avg = dataFrame["MovingAvg_" + v]
+
+    # Plot only the current stock and its Bollinger bands
+    ax = dataFrame[v].plot(title="Bollinger Bands", label=v)
     up.plot(label="up -", ax=ax)
     low.plot(label="low -", ax=ax)
     avg.plot(label="RollingMean", ax=ax)
