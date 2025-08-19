@@ -5,7 +5,7 @@ Based on data fetched from Yahoo Finance.
 ## Features
 
 - Bollinger Bands Chart
-- Daily Returns
+- Daily Returns (calculated in `stock.py`)
 - RSI Chart
 - Multiple stock comparison
 
@@ -24,6 +24,5 @@ This tool require these python libraries
 
 ## Need to improve
 
-- Daily returns calculation
-- Plots 
+- Plots
 - Add triggers to get a prediction based on ARIMA model
