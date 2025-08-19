@@ -21,4 +21,3 @@ def test_rsi_all_zeros():
     result = rsi(series)
     assert result == 0
     assert not pd.isna(result)
-

@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 # Moving Avg
 def getMovingAvg(values, gap):
     avg = values.rolling(gap).mean()
