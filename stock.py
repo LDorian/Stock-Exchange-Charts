@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import copy
 
+
 # Moving Avg
 def getMovingAvg(values, gap):
     avg = values.rolling(gap).mean()
