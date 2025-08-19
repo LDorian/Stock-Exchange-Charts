@@ -11,7 +11,7 @@ Based on data fetched from Yahoo Finance.
 
 ## Requirements
 
-This tool require these python libraries
+This tool requires these Python libraries.
 
 - [yfinance] : Yahoo Finance Data
 - [pandas] : Multidimensional data structures
